@@ -1,6 +1,6 @@
 {
   "name": "app-metrics",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Bala Clark <bala.clark@clock.co.uk>",
   "description": "Log usage metrics to statsd.",
   "main": "index.js",
