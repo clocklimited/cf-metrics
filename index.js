@@ -11,7 +11,7 @@ function Metrics(statsdServer, statsdPort, options) {
   , options.projectId
   , options.application
   , options.environment
-  )
+  ).toLowerCase()
 
   this.metrics = new Lynx(
     statsdServer
