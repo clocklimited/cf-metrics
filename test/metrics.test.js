@@ -67,7 +67,7 @@ describe('Metrics', function () {
 
     it('should send a correctly formatted message when the timer is stopped', function (done) {
       var timer = metrics.createTimer('testSection', 'testKey1')
-        , message = /client\.project\.app\.testing\.testSection\.testKey1:10[0-9.]+\|ms/
+        , message = /client\.project\.app\.testing\.testSection\.testKey1:[0-9.]+\|ms/
 
       setTimeout(function () {
         timer.stop()
@@ -80,7 +80,7 @@ describe('Metrics', function () {
 
     it('should append up to 1 extra key to the message', function (done) {
       var timer = metrics.createTimer('testSection', 'testKey1', 'testKey2')
-        , message = /client\.project\.app\.testing\.testSection\.testKey1\.testKey2:10[0-9.]+\|ms/
+        , message = /client\.project\.app\.testing\.testSection\.testKey1\.testKey2:[0-9.]+\|ms/
 
       setTimeout(function () {
         timer.stop()
