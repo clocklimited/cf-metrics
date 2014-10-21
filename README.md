@@ -9,7 +9,7 @@ When logging metrics be sure to follow the naming conventions outlined in the
 ## Usage
 
 ```
-var Metrics = require('metrics')
+var Metrics = require('cf-metrics')
   , metrics = new Metrics(
     '127.0.0.1'
     , 8325
