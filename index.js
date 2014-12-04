@@ -29,15 +29,20 @@ Metrics.prototype.generateKey = function () {
     .join('.')
 }
 
-Metrics.prototype.increment = function (section, key1, key2, key3) {
-  var key = this.generateKey(section, key1, key2, key3)
+Metrics.prototype.increment = function () {
+  var key = this.generateKey.apply(this, arguments)
   this.logger.info('metrics:increment', key)
   return this.metrics.increment(key)
 }
 
-Metrics.prototype.createTimer = function (section, key1, key2) {
-  var key = this.generateKey(section, key1, key2)
+Metrics.prototype.createTimer = function (section) {
+  var args = Array.prototype.slice.call(arguments, 0)
+    , key = this.generateKey.apply(this, args)
+
   this.logger.info('metrics:timer:start', key)
-  this.increment(section, key1, key2, 'requested')
+
+  args.push('requested')
+  this.increment.apply(this, args)
+
   return this.metrics.createTimer(key)
 }

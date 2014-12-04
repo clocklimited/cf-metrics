@@ -43,7 +43,7 @@ describe('Metrics', function () {
       assert.equal(statsdMessage, 'client.project.app.testing.testSection.testKey1:1|c')
     })
 
-    it('should append up to 2 extra keys to the message', function () {
+    it('should append unlimited extra keys to the message', function () {
 
       metrics.increment('testSection', 'testKey1', 'testKey2')
       statsdMessage = spy.getCall(0).args[0].toString('utf8')
@@ -54,6 +54,12 @@ describe('Metrics', function () {
       metrics.increment('testSection', 'testKey1', 'testKey2', 'testKey3')
       statsdMessage = spy.getCall(0).args[0].toString('utf8')
       assert.equal(statsdMessage, 'client.project.app.testing.testSection.testKey1.testKey2.testKey3:1|c')
+
+      spy.reset()
+
+      metrics.increment('testSection', 'testKey1', 'testKey2', 'testKey3', 'testKey4', 'testKey5', 'testKey6')
+      statsdMessage = spy.getCall(0).args[0].toString('utf8')
+      assert.equal(statsdMessage, 'client.project.app.testing.testSection.testKey1.testKey2.testKey3.testKey4.testKey5.testKey6:1|c')
     })
   })
 

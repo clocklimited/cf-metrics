@@ -17,3 +17,6 @@ Icon?
 /node_modules
 /coverage
 npm-debug.log
+
+# webstorm
+.idea
