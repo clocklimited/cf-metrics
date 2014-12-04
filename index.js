@@ -35,7 +35,7 @@ Metrics.prototype.increment = function () {
   return this.metrics.increment(key)
 }
 
-Metrics.prototype.createTimer = function (section) {
+Metrics.prototype.createTimer = function () {
   var args = Array.prototype.slice.call(arguments, 0)
     , key = this.generateKey.apply(this, args)
 

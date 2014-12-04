@@ -59,7 +59,8 @@ describe('Metrics', function () {
 
       metrics.increment('testSection', 'testKey1', 'testKey2', 'testKey3', 'testKey4', 'testKey5', 'testKey6')
       statsdMessage = spy.getCall(0).args[0].toString('utf8')
-      assert.equal(statsdMessage, 'client.project.app.testing.testSection.testKey1.testKey2.testKey3.testKey4.testKey5.testKey6:1|c')
+      assert.equal(statsdMessage
+      , 'client.project.app.testing.testSection.testKey1.testKey2.testKey3.testKey4.testKey5.testKey6:1|c')
     })
   })
 
