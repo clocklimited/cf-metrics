@@ -23,7 +23,7 @@ var Metrics = require('cf-metrics')
 
 ### Timers
 
-```
+```js
 var timer = metrics.createTimer('backend-api', 'Hive', 'get-code')
 
 apiRequest(function(err) {
