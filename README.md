@@ -8,7 +8,7 @@ When logging metrics be sure to follow the naming conventions outlined in the
 
 ## Usage
 
-```
+```js
 var Metrics = require('cf-metrics')
   , metrics = new Metrics(
     '127.0.0.1'
@@ -33,7 +33,7 @@ apiRequest(function(err) {
 
 ### Counters
 
-```
+```js
 metrics.increment('external-api', 'user', 'login', 'succeeded')
 ```
 
