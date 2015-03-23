@@ -7,8 +7,8 @@ function Metrics(statsdServer, statsdPort, options) {
   this.logger = options.logger || console
 
   this.scope = this.generateKey(
-    options.clientId
-  , options.projectId
+    options.client
+  , options.platform
   , options.application
   , options.environment
   ).toLowerCase()

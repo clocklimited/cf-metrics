@@ -15,8 +15,8 @@ describe('Metrics', function () {
     metrics = new Metrics(
       '127.0.0.1'
     , null
-    , { clientId: 'Client'
-      , projectId: 'Project'
+    , { client: 'Client'
+      , platform: 'Project'
       , application: 'App'
       , environment: 'testing'
       , logger: noopLogger

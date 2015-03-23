@@ -13,8 +13,8 @@ var Metrics = require('cf-metrics')
   , metrics = new Metrics(
     '127.0.0.1'
     , 8325
-    , { clientId: 'NewsUK'
-      , projectId: 'SunPerks'
+    , { client: 'nuk'
+      , platform: 'sunperks'
       , application: 'site'
       , environment: 'production'
       }
