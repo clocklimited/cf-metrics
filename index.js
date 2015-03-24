@@ -26,6 +26,7 @@ function Metrics(statsdServer, statsdPort, options) {
 Metrics.prototype.generateKey = function () {
   return Array.prototype.slice.call(arguments)
     .filter(function (value) { if (value) return value })
+    .map(function (value) { return value.replace(/\W/g, '-') })
     .join('.')
 }
 

@@ -29,8 +29,17 @@ describe('Metrics', function () {
 
   describe('constructor', function () {
 
-    it('should properly generate a default lowercased scope', function () {
+    it('should properly generate a default lower-cased scope', function () {
       assert.equal(metrics.scope, 'client.project.app.testing')
+    })
+  })
+
+  describe('key generation', function () {
+
+    it('keys should have non alpha-numeric characters replaced with a hyphen', function () {
+      metrics.increment('test', 'one:two three$%£^@ four 5')
+      statsdMessage = spy.getCall(0).args[0].toString('utf8')
+      assert.equal(statsdMessage, 'client.project.app.testing.test.one-two-three------four-5:1|c')
     })
   })
 
