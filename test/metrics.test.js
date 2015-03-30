@@ -36,10 +36,10 @@ describe('Metrics', function () {
 
   describe('key generation', function () {
 
-    it('keys should have non alpha-numeric characters replaced with a hyphen', function () {
-      metrics.increment('test', 'one:two three$%£^@ four 5')
+    it('keys should replace reserved characters with a hyphen', function () {
+      metrics.increment('test', 'one:two|three.four')
       statsdMessage = spy.getCall(0).args[0].toString('utf8')
-      assert.equal(statsdMessage, 'client.project.app.testing.test.one-two-three------four-5:1|c')
+      assert.equal(statsdMessage, 'client.project.app.testing.test.one-two-three.four:1|c')
     })
   })
 

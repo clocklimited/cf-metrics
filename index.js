@@ -26,7 +26,12 @@ function Metrics(statsdServer, statsdPort, options) {
 Metrics.prototype.generateKey = function () {
   return Array.prototype.slice.call(arguments)
     .filter(function (value) { if (value) return value })
-    .map(function (value) { return value.replace(/\W/g, '-') })
+
+    // statsd will replace spaces with underscores, and strip all other special
+    // chars from keys automatically. we need to manually strip colons and pipes
+    // as they have special meaning in statsd messages and will cause the whole
+    // message to be rejected if they are in the wrong place.
+    .map(function (value) { return value.replace(/[:|]/g, '-') })
     .join('.')
 }
 
