@@ -3,6 +3,18 @@ var Lynx = require('lynx')
 module.exports = Metrics
 
 function Metrics(statsdServer, statsdPort, options) {
+  var expectedProperties =
+        [ 'client'
+        , 'platform'
+        , 'application'
+        , 'environment'
+        ]
+
+  for(var i = 0; i < expectedProperties.length; i++) {
+    if (!options.hasOwnProperty(expectedProperties[i])) {
+      throw new Error('Wrong properties, expected ' + expectedProperties.join(', '))
+    }
+  }
 
   this.logger = options.logger || console
 
