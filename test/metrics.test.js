@@ -32,6 +32,24 @@ describe('Metrics', function () {
     it('should properly generate a default lower-cased scope', function () {
       assert.equal(metrics.scope, 'client.project.app.testing')
     })
+
+    it('should throw an error if the wrong properties are used', function () {
+      try {
+        var errorMetric = new Metrics(
+              '127.0.0.1'
+            , null
+            , { clientId: 'Client'
+              , projectId: 'Project'
+              , application: 'App'
+              , environment: 'testing'
+              , logger: noopLogger
+              })
+      } catch (exception) {
+        var expectedException = new Error('Wrong properties, expected client, platform, application, environment')
+        assert.equal(exception.toString(), expectedException.toString(), 'Did not throw an error with wrong properties')
+        assert.equal(errorMetric, undefined, 'Generated a scope from wrong properties')
+      }
+    })
   })
 
   describe('key generation', function () {
