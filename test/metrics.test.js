@@ -34,8 +34,9 @@ describe('Metrics', function () {
     })
 
     it('should throw an error if the wrong properties are used', function () {
+      var errorMetric
       try {
-        var errorMetric = new Metrics(
+        errorMetric = new Metrics(
               '127.0.0.1'
             , null
             , { clientId: 'Client'
@@ -47,8 +48,8 @@ describe('Metrics', function () {
       } catch (exception) {
         var expectedException = new Error('Wrong properties, expected client, platform, application, environment')
         assert.equal(exception.toString(), expectedException.toString(), 'Did not throw an error with wrong properties')
-        assert.equal(errorMetric, undefined, 'Generated a scope from wrong properties')
       }
+      assert.equal(errorMetric, undefined, 'Generated a scope from wrong properties')
     })
   })
 
