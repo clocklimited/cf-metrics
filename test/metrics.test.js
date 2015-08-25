@@ -35,21 +35,20 @@ describe('Metrics', function () {
 
     it('should throw an error if the wrong properties are used', function () {
       var errorMetric
-      try {
-        errorMetric = new Metrics(
-              '127.0.0.1'
-            , null
-            , { clientId: 'Client'
-              , projectId: 'Project'
-              , application: 'App'
-              , environment: 'testing'
-              , logger: noopLogger
-              })
-      } catch (exception) {
-        var expectedException = new Error('Missing expected properties: client, platform')
-        assert.equal(exception.toString(), expectedException.toString(), 'Did not throw an error with wrong properties')
-      }
-      assert.equal(errorMetric, undefined, 'Generated a scope from wrong properties')
+      assert.throws(
+        function () {
+          errorMetric = new Metrics(
+                '127.0.0.1'
+              , null
+              , { clientId: 'Client'
+                , projectId: 'Project'
+                , application: 'App'
+                , environment: 'testing'
+                , logger: noopLogger
+                })
+        }
+      , 'Missing expected properties: client, platform'
+      )
     })
   })
 
