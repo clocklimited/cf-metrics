@@ -46,7 +46,7 @@ describe('Metrics', function () {
               , logger: noopLogger
               })
       } catch (exception) {
-        var expectedException = new Error('Wrong properties, expected client, platform, application, environment')
+        var expectedException = new Error('Missing expected properties: client, platform')
         assert.equal(exception.toString(), expectedException.toString(), 'Did not throw an error with wrong properties')
       }
       assert.equal(errorMetric, undefined, 'Generated a scope from wrong properties')
