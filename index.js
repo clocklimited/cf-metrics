@@ -9,11 +9,15 @@ function Metrics(statsdServer, statsdPort, options) {
         , 'application'
         , 'environment'
         ]
+    , missingProperties = []
 
-  for(var i = 0; i < expectedProperties.length; i++) {
-    if (!options.hasOwnProperty(expectedProperties[i])) {
-      throw new Error('Wrong properties, expected ' + expectedProperties.join(', '))
-    }
+  expectedProperties.forEach(function (property) {
+    if (!options.hasOwnProperty(property)) {
+      missingProperties.push(property)
+    }         
+  })
+  if (missingProperties.length > 0) {
+    throw new Error('Missing expected properties: ' + missingProperties.join(', '))
   }
 
   this.logger = options.logger || console
