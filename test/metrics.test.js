@@ -47,7 +47,12 @@ describe('Metrics', function () {
                 , logger: noopLogger
                 })
         }
-      , 'Missing expected properties: client, platform'
+      , function (err) {
+          if ((err instanceof Error) && err.toString() === 'Error: Missing expected properties: client, platform') {
+            return true;
+          }
+        }
+      , 'An unexpected error occurred'
       )
     })
   })
