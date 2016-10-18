@@ -1,6 +1,6 @@
 {
   "name": "cf-metrics",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "Bala Clark <bala.clark@clock.co.uk>",
   "description": "Log usage metrics to statsd.",
   "main": "index.js",
