@@ -94,6 +94,12 @@ describe('Metrics', function () {
       assert.equal(statsdMessage
       , 'client.project.app.testing.testSection.testKey1.testKey2.testKey3.testKey4.testKey5.testKey6:1|c')
     })
+
+    it('extra keys should support numbers', function () {
+      metrics.increment('testSection', 12345, 123.45, {}, undefined, null, NaN)
+      statsdMessage = spy.getCall(0).args[0].toString('utf8')
+      assert.equal(statsdMessage, 'client.project.app.testing.testSection.12345.123.45.[object Object]:1|c')
+    })
   })
 
   describe('timer', function () {

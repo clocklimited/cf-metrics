@@ -14,7 +14,7 @@ function Metrics(statsdServer, statsdPort, options) {
   expectedProperties.forEach(function (property) {
     if (!options.hasOwnProperty(property)) {
       missingProperties.push(property)
-    }         
+    }
   })
   if (missingProperties.length > 0) {
     throw new Error('Missing expected properties: ' + missingProperties.join(', '))
@@ -47,7 +47,7 @@ Metrics.prototype.generateKey = function () {
     // chars from keys automatically. we need to manually strip colons and pipes
     // as they have special meaning in statsd messages and will cause the whole
     // message to be rejected if they are in the wrong place.
-    .map(function (value) { return value.replace(/[:|]/g, '-') })
+    .map(function (value) { return String(value).replace(/[:|]/g, '-') })
     .join('.')
 }
 
