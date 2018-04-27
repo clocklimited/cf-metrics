@@ -146,4 +146,15 @@ describe('Metrics', function () {
     })
 
   })
+
+  describe('timing', function () {
+
+    it('should send a correctly formatted message', function () {
+      metrics.timing('testTiming', 'testValue')
+      assert(spy.calledOnce)
+      statsdMessage = spy.getCall(0).args[0].toString('utf8')
+      assert.equal(statsdMessage, 'client.project.app.testing.testTiming:testValue|ms')
+    })
+
+  })
 })

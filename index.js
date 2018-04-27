@@ -51,6 +51,13 @@ Metrics.prototype.generateKey = function () {
     .join('.')
 }
 
+Metrics.prototype.generateKeyValue = function () {
+  var key = this.generateKey.apply(this, arguments)
+    , keyParts = key.split('.')
+    , value = keyParts.pop()
+  return { key: keyParts.join('.'), value: value }
+}
+
 Metrics.prototype.increment = function () {
   var key = this.generateKey.apply(this, arguments)
   this.logger.info('metrics:increment', key)
@@ -58,13 +65,15 @@ Metrics.prototype.increment = function () {
 }
 
 Metrics.prototype.gauge = function () {
-  var key = this.generateKey.apply(this, arguments)
-    , keyParts = key.split('.')
-    , value = keyParts.pop()
-  key = keyParts.join('.')
+  var data = this.generateKeyValue.apply(this, arguments)
+  this.logger.info('metrics:gauge', data.key, data.value)
+  return this.metrics.gauge(data.key, data.value)
+}
 
-  this.logger.info('metrics:gauge', key, value)
-  return this.metrics.gauge(key, value)
+Metrics.prototype.timing = function () {
+  var data = this.generateKeyValue.apply(this, arguments)
+  this.logger.info('metrics:timing', data.key, data.value)
+  return this.metrics.timing(data.key, data.value)
 }
 
 Metrics.prototype.createTimer = function () {
