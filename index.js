@@ -57,6 +57,16 @@ Metrics.prototype.increment = function () {
   return this.metrics.increment(key)
 }
 
+Metrics.prototype.gauge = function () {
+  var key = this.generateKey.apply(this, arguments)
+    , keyParts = key.split('.')
+    , value = keyParts.pop()
+  key = keyParts.join('.')
+
+  this.logger.info('metrics:gauge', key, value)
+  return this.metrics.gauge(key, value)
+}
+
 Metrics.prototype.createTimer = function () {
   var args = Array.prototype.slice.call(arguments, 0)
     , key = this.generateKey.apply(this, args)

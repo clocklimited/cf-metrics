@@ -135,4 +135,15 @@ describe('Metrics', function () {
       }, 100)
     })
   })
+
+  describe('gauge', function () {
+
+    it('should send a correctly formatted message', function () {
+      metrics.gauge('testGauge', 'testValue')
+      assert(spy.calledOnce)
+      statsdMessage = spy.getCall(0).args[0].toString('utf8')
+      assert.equal(statsdMessage, 'client.project.app.testing.testGauge:testValue|g')
+    })
+
+  })
 })
