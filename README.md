@@ -1,5 +1,7 @@
 # Metrics
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/clocklimited/cf-metrics.svg)](https://greenkeeper.io/)
+
 Log site usage metrics to [statsd](https://github.com/etsy/statsd). Provides a Clock-specific wrapper around
 [Lynx](https://github.com/dscape/lynx).
 
